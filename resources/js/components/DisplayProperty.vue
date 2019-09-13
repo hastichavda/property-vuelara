@@ -4,7 +4,7 @@
             <tr>
                 <th scope="col">Image</th>
                 <th scope="col">Title</th>
-                <th scope="col">Description</th>
+                <!-- <th scope="col">Description</th> -->
                 <th scope="col">Price</th>
                 <th scope="col">Type</th>
                 <th scope="col">Action</th>
@@ -20,7 +20,7 @@
                     <img :src="propertydata.image" width="50" height="50" alt="img"/>
                 </td>
                 <td>{{ propertydata.title }}</td>
-                <td>{{ propertydata.description }}</td>
+                <!-- <td>{{ propertydata.description }}</td> -->
                 <td>{{ propertydata.price}}</td>
                 <ul class="list-group list">
                     <li v-for="(type, index) in propertydata.types" 

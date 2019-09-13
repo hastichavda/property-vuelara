@@ -11,12 +11,11 @@
                 </div>
                 <div class="form-group">
                     <label for="">Description</label>
-                    <input v-model="formData.description" ref="file" type="text" class="form-control">
+                    <textarea v-model="formData.description" rows="3" class="form-control"></textarea>
                 </div>
-               
                 <div class="form-group">
-                    <label for="">Image</label>
-                    <img :src="formData.image" width="50" height="50" alt="img"/>
+                    <label for="" class="mr-4">Image:</label>
+                    <img :src="formData.image" width="80" height="60" alt="img"/>
                     <input  @change="onFileChange" type="file" ref="file" class="form-control">  
                 </div>
                 <div class="form-group">
@@ -25,12 +24,12 @@
                 </div>
                 <div class="form-group">
                     <li v-for="(type, index) in formData.types" 
-                    :key="index"
-                    class="list-group items">
+                        :key="index"
+                        class="list-group items lable">
                         {{ type.name}}
                     </li>
                 </div>
-                <div class="form-group">
+                <div class="form-group">                  
                     {{ selectedTypes }}
                     <label for="">Property Type</label>
                     <select v-model="selectedTypes" multiple>
@@ -134,23 +133,30 @@ export default {
             property.append('price', data.price);
             property.append('types',  JSON.stringify(data.types));
             property.append('action',data.action);
-            let res = await axios.put('/property/' + this.editData.id , property, { headers: { 'Content-Type': 'multipart/form-data' }})
-                                // .then((res) => {
-                                //     this.property.title = '';
-                                //     this.property.description = '';
-                                //     this.property.image = '';
-                                //     this.property.price = '';
-                                //     this.property.typeList = '';
-                                //     this.list.push(res.data.property);
-                                // })
-                                // .catch((err) => console.error(err));
+            let res = await axios.post('/property/' + this.editData.id , property, { headers: { 'Content-Type': 'multipart/form-data' }})
+                                .then((res) => {
+                                    this.formData.title = '';
+                                    this.formData.description = '';
+                                    this.formData.image = '';
+                                    this.formData.price = '';
+                                    this.formData.types = '';
+                                    this.list.push(res.data.formData);
+                                })
+                                .catch((err) => console.error(err));
         },
          async fetchType () {
             let res = await axios.get('/propertytype')
             if (res.data) {
                 this.typeList = res.data.types
             }
-        }
+        },
+     
     }
 }
 </script>
+<style>
+    .lable{
+        color: black;
+        font-weight: bold;
+    }
+</style>

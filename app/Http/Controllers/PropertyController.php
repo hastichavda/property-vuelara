@@ -52,24 +52,10 @@ class PropertyController extends Controller
       $imagePath = '/uploads/'. $imageName;
       $property->image = $imagePath;
 
-      // $imagePath = '';
-      // if ($request->has('image')) {
-      //   $image = $request->file('image');
-      //   $name = rand(00000,99999).'-'.$image->getClientOriginalName();
-      //   $destinationPath = public_path('').'uploads/property'.$name ;      
-      //   $imagePath = $destinationPath . "/" .  $name;
-      //   $image->move($destinationPath, $name);
-      //   $property->image = $imagePath;
-      // }
+    
       $property->title = $request->title;
       $property->description = $request->description;
       $property->price = $request->price;
-      
-      // if($properties->action == 1){
-      //     $properties->action = 0;
-      // } else {
-      //     $properties->action = 1;
-      // }
       $property->action = $request->action;
       $property->save();
       $property->types()->attach(json_decode($request->types));
@@ -113,18 +99,26 @@ class PropertyController extends Controller
     public function update(Request $request,$id)
     {
       $properties = Property::with('types')->findOrFail($id);
-
-      $imageName = time() . '.' . $request->image->getClientOriginalExtension();
-      $request->image->move(public_path('uploads/'), $imageName);
-      $imagePath = 'uploads/'. $imageName;
+      
+      if($request->hasFile('image'))
+      {
+        $image_path = '/uploads/'.$properties->image;
+        if(file_exists($image_path)) {
+          unlink($image_path);
+        }    
+      $imageName = time() . '.' .$request->image->getClientOriginalExtension();
+      $request->image->move(public_path('/uploads/'), $imageName);
+      $imagePath = '/uploads/'. $imageName;
       $properties->image = $imagePath;
-    
+      // $properties->save();
+    }
+      
       $properties->title = $request->title;
       $properties->description = $request->description;
       $properties->price = $request->price;
       $properties->action = $request->action;
       $properties->save();
-      $properties->types()->sync($request->types);
+      $properties->types()->sync(json_decode($request->types));
       return response()->json([
           'properties' => $properties,
       ]); 
@@ -142,5 +136,26 @@ class PropertyController extends Controller
       return response()->json([
           'status' => 'Deleted'
       ]);
+    }
+       
+    public function getAllProperty()
+    {   
+        $properties= Property::all();
+        $types= Type::all();
+        $properties = Property::orderBy('id','DESC')->get();
+        return view('welcome', compact('properties', 'types'));
+    }
+
+    public function filterProperty($id) 
+    {
+      $types = Type::find($id);
+      $properties = $types->properties;
+      return view('property.showProperty',compact('properties','types'));
+    }
+
+    public function readMore($id)
+    {
+        $properties = Property::where('id',$id)->get();
+        return view('property.readMore', compact('properties'));
     }
 }

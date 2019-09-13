@@ -1,9 +1,14 @@
 <?php
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/','PropertyController@getAllProperty');
+
+Route::get('/property','PostController@getAllProperty');
+Route::get('/get-property/{id}/','PropertyController@filterProperty');
+Route::get('/property-paginate/{id}/','PropertyController@readMore');
 
 Auth::routes();
 
@@ -15,6 +20,6 @@ Route::group(['middleware' => ['auth','admin']], function(){
     });
 
     Route::resource('/property','PropertyController');
-    Route::resource('/propertytype', 'TypeController');
-   
+    Route::post('/property/{id}', 'PropertyController@update');
+    Route::resource('/propertytype', 'TypeController');   
 });
