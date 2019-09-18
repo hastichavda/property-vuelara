@@ -1,50 +1,45 @@
-<template >
-    <div class="container">
-        <div class="card form">
-            <div class="card-header">
-                Create Property
+<template>
+<div class="con">
+        <h2>Create Property</h2><hr>
+        <form action="" metod="post" @submit.prevent="createProperty">
+            <div class="form-group">
+                <label for="">Image</label>
+                <input  @change="onFileChange" ref="file" type="file" class="form-control pb-3">
+            </div> 
+            <div class="row">
+                <div class="col-sm-8">
+                    <label for="">Title</label>
+                    <input v-model="property.title" type="text" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <label for="">Price</label>
+                    <input v-model="property.price" type="text" class="form-control">
+                </div>
             </div>
-            <div class="card-body">
-                <form action="" metod="post" @submit.prevent="createProperty">
-                    <div class="form-group">
-                        <label for="">Title</label>
-                        <input v-model="property.title" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Description</label>
-                        <textarea v-model="property.description" rows="3" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Image</label>
-                        <input  @change="onFileChange" ref="file" type="file" class="form-control">
-                    </div> 
-                    <div class="form-group">
-                        <label for="">Price</label>
-                        <input v-model="property.price" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        {{ selectedTypes }}
-                        <label for="">Property Type</label>
-                        <select v-model="selectedTypes" multiple>
-                            <option v-for="(type,index) in typeList"
-                                    :value="type.id"
-                                    :key="index">
-                                    {{ type.name }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Type</label><br>  
-                        <div class="form-control">
-                            <input v-model="property.action" class="ml-3" type="radio" value="Rent" name="rentalType">Rent
-                            <input v-model="property.action" class="ml-3" type="radio" value="sale" name="rentalType">Sale
-                        </div>
-                    </div>
-                    <hr>
-                    <button type="submit" class="btn btn-success">Submit</button>
-                </form>
+            <div class=" form-group ">
+                <label>Action :</label> 
+                <div class="form-control">
+                    <input v-model="property.action" class="ml-3" type="radio" value="Rent" name="rentalType">Rent
+                    <input v-model="property.action" class="ml-3" type="radio" value="sale" name="rentalType">Sale
+                </div>
             </div>
+            <div class="form-group">
+            {{ selectedTypes }}
+            <label for="">Property Type</label>
+            <select v-model="selectedTypes" multiple>
+                <option v-for="(type,index) in typeList"
+                        :value="type.id"
+                        :key="index">
+                        {{ type.name }}
+                </option>
+            </select>
         </div>
+            <div class=" form-group">
+                <label for="">Description</label>
+                <textarea v-model="property.description" rows="3" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success button">Submit</button>
+        </form>
     </div>
 </template>
 <script>
@@ -136,9 +131,12 @@ export default {
     }
 }
 </script>
+
 <style>
-    .form
-    {
-        width:70%;
-    }
+.con {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width:50%;
+}
 </style>

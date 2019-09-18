@@ -28,6 +28,7 @@ class LoginController extends Controller
      */
     // protected $redirectTo = '/home';
 
+    
     protected function redirectTo()
     {
         if(Auth::user()->usertype == 'admin')
@@ -35,7 +36,7 @@ class LoginController extends Controller
             return 'dashbord';
         }
         else {
-            return 'home';
+            return '/';
         }
     }
     /**

@@ -1,12 +1,16 @@
 <template>
- <div>
-   <div>
+ <div class="con">
+   <div class="container">
      <form @submit.prevent="createType">
        <div class="form-group">
-         <label>Type</label>
-         <input type="text" class="form-control" v-model="type.name">
+         <h2>Create Type</h2>
+         <hr>
+         <div class="form-group">
+            <label for="">Type</label>
+            <input type="text" class="form-control" v-model="type.name">
+         </div>
        </div>
-       <button type="submit" class="btn btn-primary">Add type</button>
+       <button type="submit" class="btn btn-success">Add type</button>
      </form>
    </div>
    <div>
@@ -15,7 +19,7 @@
        <li class="list-group-item" v-for="(type, index) in list" :key="index">
          {{ type.name }}
          <div style="text-align: right">
-           <button data-inline="true" @click="deleteType(type.id,index)" class="btn btn-primary">Delete</button>
+           <button data-inline="true" @click="deleteType(type.id,index)" class="btn btn-danger">Delete</button>
          </div>
        </li>
      </ul>
@@ -70,3 +74,13 @@ export default {
  }
 };
 </script>
+
+<style>
+.con 
+{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width:70%;
+}
+</style>

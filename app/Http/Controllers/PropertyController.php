@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Property;
 use App\Type;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -45,6 +46,7 @@ class PropertyController extends Controller
         'image'=>'required',
         'price'=>'required'
       ]);
+      
       $property= new Property;
 
       $imageName = time() . '.' . $request->image->getClientOriginalExtension();
@@ -84,7 +86,6 @@ class PropertyController extends Controller
      */
     public function edit($id)
     {
-    
       $properties = Property::with('types')->findOrFail($id);
       return view('admin.edit', compact('properties'));
     }
@@ -157,5 +158,16 @@ class PropertyController extends Controller
     {
         $properties = Property::where('id',$id)->get();
         return view('property.readMore', compact('properties'));
+    }
+    // protected $redirectTo = '/connect';
+    public function connect()
+    {
+      return view('property.connectNow');
+    }
+
+    public function profile()
+    {
+      $users = Auth::user()->all();
+      return view('admin.userProfile')->with(['users' => $users])->with(compact('users'));
     }
 }

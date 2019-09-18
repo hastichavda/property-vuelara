@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Inquery;
 use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model
@@ -19,5 +20,10 @@ class Property extends Model
     public function types()
     {
         return $this->belongsToMany('App\Type');
+    }
+
+    public function inqueries()
+    {
+        return $this->belongsToMany('App\Inquery');
     }
 }

@@ -39,7 +39,6 @@
         </div>
     </div>
 @endsection
-
 <style>
     .main{
         overflow-x: hidden;

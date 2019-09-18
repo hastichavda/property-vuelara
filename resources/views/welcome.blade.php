@@ -97,6 +97,16 @@
                 -moz-box-shadow: -1px 1px 24px 7px rgba(207,201,207,1);
                 box-shadow: -1px 1px 24px 7px rgba(207,201,207,1);
             }
+            .prop-image{
+                opacity: 0.9;
+                width:100%;
+                min-height:100px;
+            }
+            .prop-btn
+            {
+                background: #e81c28;
+                color: white;
+            }
     </style>
     </head>
     <body>        
@@ -152,27 +162,21 @@
             @endforeach
         </ul> 
     </div>
-   
+  
     <div class="row">
         @foreach ($properties as $property)
-        <div class="col">
-            <div class="card mt-2">
-                <img src="{{ URL::asset($property->image) }}"  style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        {{ $property->title }}
-                    </h5>
-                    <h4 class="card-title">
-                        {{ $property->action }}
-                    </h4>
-                    <p class="card-text"> 
-                        {{ $property->description }}
-                    </p>
-                    <a href="{{ action('PropertyController@readMore',$property->id)}}" 
-                    class="btn btn-primary">
-                        <strong>$ {{ $property->price }}</strong>
-                    </a>
-                </div>
+        <div class="col container">
+            <div class="mt-2 prop-image">
+                <img src="{{ URL::asset($property->image) }}"  style="width: 18rem;" class="">
+                <div class="carousel-caption">
+                        <a href="{{ action('PropertyController@readMore',$property->id)}}" 
+                            class="btn prop-btn">
+                            <strong>$ {{ $property->price }}</strong>
+                        </a>
+                    </div>
+                    {{-- {{ $property->title }} --}}
+                    {{-- {{ $property->action }} --}}
+                    {{-- {{ $property->description }} --}}
             </div>
         </div>   
         @endforeach

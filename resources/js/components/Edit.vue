@@ -1,56 +1,59 @@
 <template>
-    <div class="card">
-        <div class="card-header">
+<div>                  
+    <div class="con">
+        <h2>
             Edit Property
-        </div>
-        <div class="card-body">
-            <form @submit.prevent="updateProperty">
-                <div class="form-group">
-                    <label for="">title</label>
+        </h2>
+        <hr>
+        <form @submit.prevent="updateProperty">
+            <div class="form-group">
+                <label for="" class="mr-4">Image:</label>
+                <img :src="formData.image" width="80" height="60" alt="img"/><br>
+                <input  @change="onFileChange" type="file" ref="file" class="form-control">  
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <label for="">Title</label>
                     <input v-model="formData.title" type="text" class="form-control">
                 </div>
-                <div class="form-group">
-                    <label for="">Description</label>
-                    <textarea v-model="formData.description" rows="3" class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="" class="mr-4">Image:</label>
-                    <img :src="formData.image" width="80" height="60" alt="img"/>
-                    <input  @change="onFileChange" type="file" ref="file" class="form-control">  
-                </div>
-                <div class="form-group">
+                <div class="col-sm-4">
                     <label for="">Price</label>
                     <input v-model="formData.price" type="text" class="form-control">
                 </div>
-                <div class="form-group">
-                    <li v-for="(type, index) in formData.types" 
-                        :key="index"
-                        class="list-group items lable">
-                        {{ type.name}}
-                    </li>
+            </div>
+            <div class="form-group">
+                <label for="">Action</label><br>  
+                <div class="form-control">
+                    <input v-model="formData.action" class="ml-3" type="radio" value="Rent" name="rentalType">Rent
+                    <input v-model="formData.action" class="ml-3" type="radio" value="sale" name="rentalType">Sale
                 </div>
-                <div class="form-group">                  
-                    {{ selectedTypes }}
-                    <label for="">Property Type</label>
-                    <select v-model="selectedTypes" multiple>
-                        <option v-for="(type,index) in typeList"
-                                :value="type.id"
-                                :key="index">
-                                {{ type.name }}
-                        </option>
-                    </select>
-                </div>
-                <div class="form-group">
-                        <label for="">Type</label><br>  
-                        <div class="form-control">
-                            <input v-model="formData.action" class="ml-3" type="radio" value="Rent" name="rentalType">Rent
-                            <input v-model="formData.action" class="ml-3" type="radio" value="sale" name="rentalType">Sale
-                        </div>
-                    </div>
-                <button type="submit" class="btn btn-info">Update</button>  
-            </form>
-        </div>
+            </div>
+            <div class="form-group">
+                <li v-for="(type, index) in formData.types" 
+                    :key="index"
+                    class="list-group items lable">
+                    {{ type.name}}
+                </li>
+            </div>
+            <div class="form-group">                  
+                {{ selectedTypes }}
+                <label for="">Property Type</label>
+                <select v-model="selectedTypes" multiple>
+                    <option v-for="(type,index) in typeList"
+                            :value="type.id"
+                            :key="index">
+                            {{ type.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="">Description</label>
+                <textarea v-model="formData.description" rows="3" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>  
+        </form>
     </div>
+</div>
 </template>
 <script>
 export default {
@@ -71,7 +74,8 @@ export default {
                 description: '',
                 image:'',
                 price:'',
-                action:''
+                action:'',
+                types:[]
             }
         }
     },
@@ -85,6 +89,7 @@ export default {
             this.formData.types = this.editData.types;
             this.formData.image = this.editData.image;
             this.formData.action  = this.editData.action;
+           
         }
         this.fetchType();
     }, 
@@ -101,7 +106,7 @@ export default {
                 this.formData.types = res.data.properties.types
                 this.formData.image = res.data.properties.image
                 this.formData.action = res.data.properties.action
-            }   
+            }
         },
         onFileChange(e)
         {
@@ -115,6 +120,7 @@ export default {
             };
             reader.readAsDataURL(file);
         },
+        
         async updateProperty(e)
         {
             let data = {
@@ -155,8 +161,9 @@ export default {
 }
 </script>
 <style>
-    .lable{
-        color: black;
-        font-weight: bold;
-    }
+.con {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
 </style>

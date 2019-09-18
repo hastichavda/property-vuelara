@@ -6,7 +6,7 @@
         <div class="sidebar mr-5">
             <ul class="menu">
                 <li class="menuitems">
-                    <a href="/dashbord" class="items">
+                    <a href="dashbord" class="items">
                         <i class="fa fa-tachometer icon"></i>Dashbord
                     </a>
                 </li>
@@ -26,8 +26,13 @@
                     </a>
                 </li>
                 <li class="menuitems">
-                    <a href="#" class="items">
+                    <a href="/profile" class="items">
                         <i class="fa fa-users icon"></i>Profile
+                    </a>
+                </li>
+                <li class="menuitems">
+                    <a href="/inquery" class="items">
+                        <i class="fa fa-info-circle icon"></i>InqeryForm Data
                     </a>
                 </li>
             </ul>
