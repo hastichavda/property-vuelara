@@ -24,6 +24,6 @@ class Property extends Model
 
     public function inqueries()
     {
-        return $this->belongsToMany('App\Inquery');
+        return $this->hasOne('App\Inquery');
     }
 }

@@ -10,6 +10,7 @@ class Inquery extends Model
 {
    protected $fillable = [
         'user_id',
+        'property_id',
         'fname',
         'lname',
         'email',
@@ -25,6 +26,6 @@ class Inquery extends Model
 
    public function properties()
    {
-       return $this->belongsToMany('App\Property');
+       return $this->hasOne('App\Property');
    }
 }

@@ -55,11 +55,6 @@
         .m-b-md {
             margin-bottom: 30px;
         }
-        .header1{
-            background-image: url("{{ asset('/images/4.jpg') }}");
-            height: 70vh;
-            min-height: 500px;
-        }
         .header{
             background: rgba(0,0,0,0.5);
             

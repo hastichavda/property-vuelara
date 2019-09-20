@@ -59,31 +59,13 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-
             .m-b-md {
                 margin-bottom: 30px;
             }
             .header1{
-                background-image: url("{{ asset('/images/4.jpg') }}");
                 height: 70vh;
                 min-height: 500px;
-            }
-            .header{
-                background: rgba(0,0,0,0.5);
-                
-            }
-            .menu-item
-            {
-                color: white;
-                padding: 0 5px 0 10px;
-            }
-            .icon
-            {
-                font-size:20px;
-                padding-right:5px;
-            }
-            .menu{
-                justify-content: flex-end;
+                width: 100%;
             }
             .box{
                 background: skyblue;
@@ -97,94 +79,69 @@
                 -moz-box-shadow: -1px 1px 24px 7px rgba(207,201,207,1);
                 box-shadow: -1px 1px 24px 7px rgba(207,201,207,1);
             }
-            .prop-image{
-                opacity: 0.9;
-                width:100%;
-                min-height:100px;
-            }
-            .prop-btn
-            {
-                background: #e81c28;
-                color: white;
-            }
-    </style>
+        </style>
     </head>
-    <body>        
-    <div class="header1">
-            <nav class="navbar navbar-dark  navbar-expand-sm header">
-                <a class="navbar-brand" href="#">
-                    <img src="{{url('/images/2.png')}}" alt="" width="30" height="30">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-2" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse menu" id="navbar-list-2">
-                    <ul class="navbar-nav">
-                        <li class="nav-item ">
-                        <a class=" menu-item" href="#"><i class="fa fa-home icon"></i>Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="menu-item" href="#"><i class="fa fa-user-plus icon"></i>About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class=" menu-item" href="#"><i class="fa fa-phone-square icon"></i>Contact</a>
-                    </li>
-                    @if (Route::has('login'))
-                        @auth
-                        <li class="nav-item">
-                            <a href="{{ url('/home') }}">Home</a>
-                        </li>
-                        @else
-                        <li class="nav-item">
-                            <a  class=" menu-item"  href="{{ route('login') }}"><i class="fa fa-sign-in icon"></i>Login</a>
-                        </li>
-                            @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a  class=" menu-item" href="{{ route('register') }}"><i class="fa fa-user icon"></i>Register</a>
-                            </li>
-                            @endif
-                        @endauth
-                    @endif
-                </ul>
+    <body>      
+        @include('header')  
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner header1" data-interval="1">
+                <div class="carousel-item active">
+                    <img class="d-block" src="{{url('/images/4.jpg')}}">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block" src="{{url('/images/caros1.jpg')}}" width="100%">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block" src="{{url('/images/caros2.jpg')}}" width="100%">
+                </div>
             </div>
-        </nav>
-    </div>
-    <div class="box mt-1">
-        <h4 class="text-center text-bold">Property Type</h4>
-        <hr>   
-        <ul>
-            @foreach ($types as $type)
-                <li class="list-group">
-                    <a href="{{ action('PropertyController@filterProperty',$type->id ) }}">
-                        {{$type->name}}
-                    </a>
-                </li>
-            @endforeach
-        </ul> 
-    </div>
-  
-    <div class="row">
-        @foreach ($properties as $property)
-        <div class="col container">
-            <div class="mt-2 prop-image">
-                <img src="{{ URL::asset($property->image) }}"  style="width: 18rem;" class="">
-                <div class="carousel-caption">
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon icon1" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next " href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon icon1" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="box mt-1">
+            <h4 class="text-center">Property Type</h4>
+            <hr>   
+            <ul>
+                @foreach ($types as $type)
+                    <li class="list-group">
+                        <a href="{{ action('PropertyController@filterProperty',$type->id ) }}">
+                            {{$type->name}}
+                        </a>
+                    </li>
+                @endforeach
+            </ul> 
+        </div>
+
+        <div class="container">
+            <div class="row">
+            @foreach ($properties as $property)
+                <div class="col-sm-4 py-2">
+                    <div class="card card-body h-100">
+                        <img src="{{ URL::asset($property->image) }}"  alt="" width="100%" height="80%" >    
                         <a href="{{ action('PropertyController@readMore',$property->id)}}" 
-                            class="btn prop-btn">
+                            class="btn btn-info">
                             <strong>$ {{ $property->price }}</strong>
                         </a>
                     </div>
-                    {{-- {{ $property->title }} --}}
-                    {{-- {{ $property->action }} --}}
-                    {{-- {{ $property->description }} --}}
+                </div>
+                @endforeach
             </div>
-        </div>   
-        @endforeach
-   </div>
-           
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        </div>      
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
     </body>
 </html>

@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    
-<style>
-.prop-content {
-    background: whitesmoke;
-    border-radius: 10px 10px;
-    border: 1px solid grey;   
-}
+    <style>
+    .prop-content {
+        background: whitesmoke;
+        border-radius: 10px 10px;
+        border: 1px solid grey;   
+    }
     .button1
     {
         background: #e81c28;
@@ -22,8 +21,7 @@
         background: #21c0a8;
         color: white;
     }
-</style>
-    
+    </style>
 </head>
 <body>
     @include('/header')
@@ -45,7 +43,7 @@
                     class="btn button2">
                     <strong>$ {{ $property->price }}</strong>
                 </a>
-                <a href="/connect" 
+                <a href='/connect/create?id={{$property->id}}' 
                     class="btn button1">Connect Now</a>
             </div>
             <br>

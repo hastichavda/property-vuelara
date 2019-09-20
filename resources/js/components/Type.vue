@@ -2,15 +2,15 @@
  <div class="con">
    <div class="container">
      <form @submit.prevent="createType">
-       <div class="form-group">
-         <h2>Create Type</h2>
-         <hr>
-         <div class="form-group">
-            <label for="">Type</label>
-            <input type="text" class="form-control" v-model="type.name">
-         </div>
-       </div>
-       <button type="submit" class="btn btn-success">Add type</button>
+      <div class="form-group">
+        <h2>Create Type</h2>
+        <hr>
+        <div class="form-group">
+          <label for="">Type</label>
+          <input type="text" class="form-control" v-model="type.name">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Add type</button>
      </form>
    </div>
    <div>

@@ -2,8 +2,7 @@
 
 @extends('layouts.app')
 @section('content')
-
-<div class="main">
+    <div class="main">
         <div class="sidebar mr-5">
             <ul class="menu">
                 <li class="menuitems">
@@ -39,60 +38,60 @@
             </ul>
         </div>   
         <table class="table table-striped col-sm-4">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>         
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($users as $user)
-              <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>       
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+            <tr>
+            <td>{{ $user->id }}</td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+        </table>
     </div>
 @endsection
 
 <style>
-        .main{
-            overflow-x: hidden;
-            display: flex;
-            height: 100%;
-        }
-        .sidebar
-        {
-            background: #3F7FBF;
-            padding-top: 2%;
-            width: 19%;
-        }
-        .menu
-        {
-            list-style: none;
-        }
-        .menuitems{
-            padding: 5% 0 5% 1%;
-        }
-        .items
-        {
-            color: whitesmoke;
-            font-size: 15px;
-        }
-        .items:hover 
-        {
-            color: antiquewhite;
-        }
-        .icon
-        {
-            padding-right: 20px;
-            font-size: 20px;
-        }
-        .table1{
-            width:10%;
-        }
-    </style>
+.main{
+    overflow-x: hidden;
+    display: flex;
+    height: 100%;
+}
+.sidebar
+{
+    background: #3F7FBF;
+    padding-top: 2%;
+    width: 19%;
+}
+.menu
+{
+    list-style: none;
+}
+.menuitems{
+    padding: 5% 0 5% 1%;
+}
+.items
+{
+    color: whitesmoke;
+    font-size: 15px;
+}
+.items:hover 
+{
+    color: antiquewhite;
+}
+.icon
+{
+    padding-right: 20px;
+    font-size: 20px;
+}
+.table1{
+    width:10%;
+}
+</style>

@@ -16,7 +16,7 @@ class InqueryController extends Controller
      */
     public function index()
     {
-        $inqueries = Inquery::with('properties')->get();
+        $inqueries = Inquery::all();
         return view('property.connectNow',compact('inqueries'));
     }
 
@@ -25,9 +25,11 @@ class InqueryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-       //
+        $property_id = $request->id;
+        $inqueries = Inquery::all();
+        return view('property.connectNow',compact('inqueries', 'property_id'));      
     }
 
     /**
@@ -41,8 +43,8 @@ class InqueryController extends Controller
         $this->validate($request, [
             'fname'=>'required',
             'lname'=>'required',
-            'email'=>'required',
-            'contactno'=>'required',
+            'email'=>'required|email',
+            'contactno'=>'required|min:10|numeric',
             'message' => 'required'
         ]);
 
@@ -53,9 +55,8 @@ class InqueryController extends Controller
         $inquery->contactno = $request->contactno;
         $inquery->message = $request->message;
         $inquery->user_id = Auth::user()->id;
-        $inquery->save();
-        $inquery->properties()->sync($request->properties);
-        $inquery->properties;
+        $inquery->property_id = $request->property_id;
+        $inquery->save();    
         return response()->json([
             'inquery' => $inquery
         ]);
@@ -69,8 +70,7 @@ class InqueryController extends Controller
      */
     public function show(inquery $inquery)
     {
-        $inqueries = Inquery::all();
-        return view('admin.inqueryForm' , compact('inqueries'));  
+        //  
     }
 
     /**
@@ -103,23 +103,16 @@ class InqueryController extends Controller
      * @param  \App\inquery  $inquery
      * @return \Illuminate\Http\Response
      */
-    public function destroy(inquery $inquery)
+    public function destroy(inquery $inquery,$id)
     {
-        // $inquery->delete();
-        // return response()->json([
-        //     'status' => 'Deleted'
-        // ]);
+        $inquery = Inquery::findOrFail($id);
+        $inquery->delete();
+        return redirect('inquery');
     }
     public function display()
     {
         $inqueries = Inquery::all();
         return view('admin.inqueryForm' , compact('inqueries'));
     }
-    public function inquerydelete(Request $id)
-    {
-        $inquery->delete()->find($id);
-        return response()->json([
-            'status' => 'Deleted'
-        ]);
-    }
+   
 }

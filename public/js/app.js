@@ -1897,11 +1897,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     inquerydata: {
       type: Array,
       required: true
+    },
+    propertyId: {
+      type: Number,
+      required: false
     }
   },
   data: function data() {
@@ -1912,7 +1919,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         lname: '',
         email: '',
         contactno: '',
-        message: ''
+        message: '',
+        property_id: ''
       }
     };
   },
@@ -1922,6 +1930,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     if (this.inquerydata) {
       this.list = this.inquerydata;
     }
+
+    this.inquery.property_id = this.propertyId;
   },
   methods: {
     createInquery: function () {
@@ -1940,7 +1950,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   lname: this.inquery.lname,
                   email: this.inquery.email,
                   contactno: this.inquery.contactno,
-                  message: this.inquery.message
+                  message: this.inquery.message,
+                  property_id: this.inquery.property_id
                 };
                 console.log(data);
                 axios.post('/connect', data).then(function (res) {
@@ -1949,6 +1960,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.inquery.email = '';
                   _this.inquery.contactno = '';
                   _this.inquery.message = '';
+                  _this.inquery.property_id = '';
 
                   _this.list.push(res.data.inquery);
                 })["catch"](function (err) {
@@ -2230,8 +2242,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     displayData: {
@@ -2313,13 +2323,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 //
 //
 //
@@ -2398,6 +2409,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.formData.description = this.editData.description;
       this.formData.price = this.editData.price;
       this.formData.types = this.editData.types;
+      this.selectedTypes = _toConsumableArray(this.editData.types.map(function (type) {
+        return type.id;
+      }));
       this.formData.image = this.editData.image;
       this.formData.action = this.editData.action;
     }
@@ -39707,6 +39721,11 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
+            _c("input", {
+              attrs: { type: "hidden" },
+              domProps: { value: _vm.inquery.property_id }
+            }),
+            _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "" } }, [_vm._v("Message")]),
               _vm._v(" "),
@@ -40061,7 +40080,7 @@ var render = function() {
             _vm._v(" "),
             _c("td", [
               _c("i", {
-                staticClass: "fa fa-trash  fa-2x",
+                staticClass: "fa fa-trash fa-2x text-danger",
                 on: {
                   click: function($event) {
                     return _vm.deleteProperty(propertydata.id, index)
@@ -40260,25 +40279,6 @@ var render = function() {
               _vm._v("Sale\r\n                ")
             ])
           ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            _vm._l(_vm.formData.types, function(type, index) {
-              return _c(
-                "li",
-                { key: index, staticClass: "list-group items lable" },
-                [
-                  _vm._v(
-                    "\r\n                    " +
-                      _vm._s(type.name) +
-                      "\r\n                "
-                  )
-                ]
-              )
-            }),
-            0
-          ),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _vm._v(

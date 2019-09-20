@@ -1,16 +1,10 @@
 <?php
 
-
-
 Route::get('/','PropertyController@getAllProperty');
 
 Route::get('/property','PostController@getAllProperty');
 Route::get('/get-property/{id}/','PropertyController@filterProperty');
 Route::get('/property-paginate/{id}/','PropertyController@readMore');
-
-
-
-
 
 Auth::routes();
 
@@ -25,7 +19,7 @@ Route::group(['middleware' => ['auth','admin']], function(){
     Route::get('/profile','PropertyController@profile');
     Route::resource('/propertytype', 'TypeController');   
     Route::get('/inquery', 'InqueryController@display');
-    Route::delete('/inquery/{id}','InqueryController@inquerydelete');
+    Route::get('/inquery/{id}','InqueryController@destroy');
 });
 
 Route::group(['middleware' => ['auth']],function() {

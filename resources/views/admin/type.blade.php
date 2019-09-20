@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 @section('content')
-<div class="main">
+    <div class="main">
         <div class="sidebar mr-5">
             <ul class="menu">
                 <li class="menuitems">
@@ -26,54 +26,53 @@
                     </a>
                 </li>
                 <li class="menuitems">
-                    <a href="#" class="items">
+                    <a href="/profile" class="items">
                         <i class="fa fa-users icon"></i>Profile
                     </a>
                 </li>
+                <li class="menuitems">
+                    <a href="/inquery" class="items">
+                        <i class="fa fa-info-circle icon"></i>InqeryForm Data
+                    </a>
+                </li>   
             </ul>
         </div>   
-        <div class="form">
-            <div class="container-fluid">
-                    <property-type :typedata="{{ $type }}"/>
-            </div>
+        <div class="container">
+                <property-type :typedata="{{ $type }}"/>
         </div>
     </div>
 @endsection
 <style>
-    .main{
-        overflow-x: hidden;
-        display: flex;
-        height: 100%;
-    }
-    .sidebar
-    {
-        background: #3F7FBF;
-        padding-top: 2%;
-        width: 18%;
-    }
-    .menu
-    {
-        list-style: none;
-    }
-    .menuitems{
-        padding: 5% 0 5% 1%;
-    }
-    .items
-    {
-        color: whitesmoke;
-        font-size: 15px;
-    }
-    .items:hover 
-    {
-        color: antiquewhite;
-    }
-    .icon
-    {
-        padding-right: 20px;
-        font-size: 20px;
-    }
-    .form
-    {
-        width:50%;
-    }
+.main{
+    overflow-x: hidden;
+    display: flex;
+    height: 100%;
+}
+.sidebar
+{
+    background: #3F7FBF;
+    padding-top: 2%;
+    width: 18%;
+}
+.menu
+{
+    list-style: none;
+}
+.menuitems{
+    padding: 5% 0 5% 1%;
+}
+.items
+{
+    color: whitesmoke;
+    font-size: 15px;
+}
+.items:hover 
+{
+    color: antiquewhite;
+}
+.icon
+{
+    padding-right: 20px;
+    font-size: 20px;
+}
 </style>

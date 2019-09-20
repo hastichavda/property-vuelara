@@ -168,6 +168,6 @@ class PropertyController extends Controller
     public function profile()
     {
       $users = Auth::user()->all();
-      return view('admin.userProfile')->with(['users' => $users])->with(compact('users'));
+      return view('admin.userProfile')->with(['user' => $users])->with(compact('users'));
     }
 }
