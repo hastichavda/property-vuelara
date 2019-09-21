@@ -1,5 +1,6 @@
 <html>
   <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
     body {
         font-family: 'Work Sans', sans-serif;
@@ -538,12 +539,5 @@
         </div>
         </nav>
     </div>
-    <script>
-        $('.nav-toggle').click(function(e) {
-        e.preventDefault();
-        $("html").toggleClass("openNav");
-        $(".nav-toggle").toggleClass("active");
-        });
-    </script>
   </body>
 </html>
