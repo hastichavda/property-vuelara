@@ -1898,8 +1898,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     inquerydata: {
@@ -7179,7 +7177,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.info{\n    background:#d9d9d9;\n    padding: 3%;\n    height: 75%;\n    width: 60%;\n    border-radius: 10px 10px ;\n}\n.con-btn{\n    background: #16a89c;\n    color: white;\n    width: 80%;\n    margin: 0 3% 0 9%;\n    padding: 5px;\n    border-radius: 10px 10px;\n}\n.info-title\n{\n    background: #16a89c;\n    color: white;\n    border-radius: 10px 10px;\n    padding-left: 1%;\n}\n", ""]);
+exports.push([module.i, "\n.info{\r\n  background:#d9d9d9;\r\n  padding: 3%;\r\n  height: 75%;\r\n  width: 60%;\r\n  border-radius: 10px 10px ;\n}\n.con-btn{\r\n  background: #16a89c;\r\n  color: white;\r\n  width: 80%;\r\n  margin: 0 3% 0 9%;\r\n  padding: 5px;\r\n  border-radius: 10px 10px;\n}\n.info-title\r\n{\r\n  background: #16a89c;\r\n  color: white;\r\n  border-radius: 10px 10px;\r\n  padding-left: 1%;\n}\r\n", ""]);
 
 // exports
 
@@ -7217,7 +7215,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.list\n{\n    list-style:none;\n}\n", ""]);
+exports.push([module.i, "\n.list\r\n{\r\n  list-style:none;\n}\r\n", ""]);
 
 // exports
 
@@ -7236,7 +7234,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.con {\r\n    border-radius: 5px;\r\n    background-color: #f2f2f2;\r\n    padding: 20px;\n}\r\n", ""]);
+exports.push([module.i, "\n.con {\r\n  border-radius: 5px;\r\n  background-color: #f2f2f2;\r\n  padding: 20px;\n}\r\n", ""]);
 
 // exports
 
@@ -39894,7 +39892,7 @@ var render = function() {
                 }
               }
             }),
-            _vm._v("Rent\r\n                    "),
+            _vm._v("Rent\n        "),
             _c("input", {
               directives: [
                 {
@@ -39913,14 +39911,12 @@ var render = function() {
                 }
               }
             }),
-            _vm._v("Sale\r\n                ")
+            _vm._v("Sale\n      ")
           ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _vm._v(
-            "\r\n            " + _vm._s(_vm.selectedTypes) + "\r\n            "
-          ),
+          _vm._v("\n      " + _vm._s(_vm.selectedTypes) + "\n      "),
           _c("label", { attrs: { for: "" } }, [_vm._v("Property Type")]),
           _vm._v(" "),
           _c(
@@ -39955,13 +39951,7 @@ var render = function() {
               return _c(
                 "option",
                 { key: index, domProps: { value: type.id } },
-                [
-                  _vm._v(
-                    "\r\n                        " +
-                      _vm._s(type.name) +
-                      "\r\n                "
-                  )
-                ]
+                [_vm._v("\n              " + _vm._s(type.name) + "\n        ")]
               )
             }),
             0
@@ -40060,9 +40050,7 @@ var render = function() {
               _vm._l(propertydata.types, function(type, index) {
                 return _c("li", { key: index }, [
                   _vm._v(
-                    "\n                    " +
-                      _vm._s(type.name) +
-                      "\n                "
+                    "\n              " + _vm._s(type.name) + "\n          "
                   )
                 ])
               }),
@@ -40142,7 +40130,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "con" }, [
-      _c("h2", [_vm._v("\r\n            Edit Property\r\n        ")]),
+      _c("h2", [_vm._v("\n        Edit Property\n    ")]),
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
@@ -40257,7 +40245,7 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v("Rent\r\n                    "),
+              _vm._v("Rent\n          "),
               _c("input", {
                 directives: [
                   {
@@ -40276,15 +40264,15 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v("Sale\r\n                ")
+              _vm._v("Sale\n        ")
             ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _vm._v(
-              "                  \r\n                " +
+              "                  \n        " +
                 _vm._s(_vm.selectedTypes) +
-                "\r\n                "
+                "\n        "
             ),
             _c("label", { attrs: { for: "" } }, [_vm._v("Property Type")]),
             _vm._v(" "),
@@ -40322,9 +40310,7 @@ var render = function() {
                   { key: index, domProps: { value: type.id } },
                   [
                     _vm._v(
-                      "\r\n                            " +
-                        _vm._s(type.name) +
-                        "\r\n                    "
+                      "\n                " + _vm._s(type.name) + "\n          "
                     )
                   ]
                 )

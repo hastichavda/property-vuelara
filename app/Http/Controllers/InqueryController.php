@@ -103,6 +103,8 @@ class InqueryController extends Controller
      * @param  \App\inquery  $inquery
      * @return \Illuminate\Http\Response
      */
+
+     
     public function destroy(inquery $inquery,$id)
     {
         $inquery = Inquery::findOrFail($id);
